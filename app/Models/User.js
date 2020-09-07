@@ -7,7 +7,15 @@ const Model = use('Model')
 const Hash = use('Hash')
 
 class User extends Model {
-  
+/**
+ *  oculta o campo password quando retorna um usuario do banco.
+ */
+  static get hidden() {
+    return ['password']
+  }
+/**
+ *  Pega funções de arquivos externos ao model.
+ */
   static get traits () {
     return [
       '@provider:Adonis/Acl/HasRole',
@@ -16,16 +24,12 @@ class User extends Model {
   }
   static boot () {
     super.boot()
-
-    /**
-     * A hook to hash the user password before saving
-     * it to the database.
-     */
     this.addHook('beforeSave', async (userInstance) => {
       if (userInstance.dirty.password) {
         userInstance.password = await Hash.make(userInstance.password)
       }
     })
+    
   }
 
   /**
@@ -40,6 +44,18 @@ class User extends Model {
    */
   tokens () {
     return this.hasMany('App/Models/Token')
+  }
+
+  image () {
+    return this.belongsTo('App/Models/Image')
+  }
+
+  coupons () {
+    return this.belongsToMany('App/Models/Coupon')
+  }
+
+  orders () {
+    return this.hasMany('App/Models/Order')
   }
 }
 
