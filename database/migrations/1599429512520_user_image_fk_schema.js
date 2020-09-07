@@ -6,7 +6,7 @@ const Schema = use('Schema')
 class UserImageFkSchema extends Schema {
   up() {
     this.table('users', (table) => {
-      // alter table
+      // Relacionamento entre user e image 
       table
         .foreign('image_id')
         .references('id')
