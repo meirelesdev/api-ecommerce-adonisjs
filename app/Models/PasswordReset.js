@@ -3,7 +3,7 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
-class PassworReset extends Model {
+class PasswordReset extends Model {
     static boot() {
         super.boot()
         this.addHook('beforeCreate', async model => {
@@ -20,4 +20,4 @@ class PassworReset extends Model {
     }
 }
 
-module.exports = PassworReset
+module.exports = PasswordReset
