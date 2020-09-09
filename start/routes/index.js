@@ -17,5 +17,13 @@
 const Route = use('Route')
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
+  return { greeting: 'API ok!' }
 })
+/**
+ * Rotas de autenticação
+ */
+require('./auth')
+/*
+* Rotas de administrador
+*/
+require('./admin')
