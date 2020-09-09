@@ -22,7 +22,7 @@ class ClientSeeder {
     
     await Promise.all(
       Clients.map(async client => {
-        await client.role().attach([role.id])
+        await client.roles().attach([role.id])
        } 
       )
     )

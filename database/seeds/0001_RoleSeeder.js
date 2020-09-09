@@ -27,7 +27,11 @@ class RoleSeeder {
       description: 'Gerente da loja'
     })
     // Cria o Cliente
-    await Role.create({ name : 'Client' , slug: 'client',  description: 'Cliente da Loja'})
+    await Role.create({ 
+      name: 'Client',
+      slug: 'client',
+      description: 'Cliente da Loja'
+    })
   }
 }
 
