@@ -12,7 +12,7 @@ class Pagination {
   async handle (ctx, next) {
 
     if(ctx.request.method() === 'GET'){
-      console.log("Estamos no middleware ")
+      
       const page = parseInt(ctx.request.input('page'))
       const limit = parseInt(ctx.request.input('limit'))
       const perPage = parseInt(ctx.request.input('perPage'))

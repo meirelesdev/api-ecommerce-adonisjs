@@ -24,14 +24,11 @@ class ProductController {
 
     try {
         const data  = request.only(['name', 'description', 'price', 'image_id'])
-
         const product = await Product.create(data)
-
         response.send(product)
-    } catch (error) {
 
+    } catch (error) {
       response.status(400).send({message: "Erro ao Cadastrar o Produto!"})
-      
     }
   }
 
@@ -39,6 +36,7 @@ class ProductController {
     const product = await Product.findOrFail(id)
     response.send(product)
   }
+  
   async update ({ params: { id }, request, response }) {
     const data = request.only(['name', 'description', 'image_id', 'price'])
     const product = await Product.findOrFail(id)
