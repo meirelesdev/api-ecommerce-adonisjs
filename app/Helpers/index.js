@@ -16,7 +16,7 @@ const Helpers = use('Helpers')
     if(len < length) {
         let size = length - len
         let bytes = await Crypto.randomBytes(size)
-        let buffer = new Buffer(bytes)
+        let buffer = Buffer.from(bytes)
 
         string += buffer.toString('base64').replace(/[^A-z0-9]/g, '').substr(0, size)
     }
