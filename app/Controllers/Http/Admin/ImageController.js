@@ -1,8 +1,9 @@
 'use strict'
 
-// const { manage_multiple_upload } = require("../../../Helpers")
 const fs = use('fs')
+const Helpers = use('Helpers')
 const Image = use('App/Models/Image')
+const deleteFile = Helpers.promisify(fs.unlink)
 
 const { manage_single_upload, manage_multiple_upload } = use('App/Helpers')
 
@@ -91,10 +92,9 @@ class ImageController {
     const image = await Image.findOrFail(id)
     console.log("No banco temos ", image)
     try {
-      let filePath = Helpers.publicPath(`uploads/${image.path}`)
-      // await fs.unlink(filePath, err => {
-      //  if(!err)   await image.delete()        
-      // })
+      
+        await deleteFile(Helpers.publicPath(`uploads/${image.path}`))
+        await image.delete()
       response.status(204).send()
 
     } catch (error) {
